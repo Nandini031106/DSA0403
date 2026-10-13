@@ -1,11 +1,20 @@
-import numpy as np
+# Import libraries
+import pandas as pd
+from google.colab import files
 
-# 3x3 matrix with your new product sales inputs
-sales_data = np.array([[120, 150, 130],
-                       [200, 210, 190],
-                       [ 90, 100,  95]])
+# Upload dataset
+uploaded = files.upload()
 
-# Calculate the overall average
-average_price = np.mean(sales_data)
+# Read Excel file
+filename = list(uploaded.keys())[0]
+sales_data = pd.read_excel(filename)
 
-print(f"Overall Average Price: {average_price:.2f}")
+# Display dataset
+print("Sales Dataset:")
+display(sales_data.head())
+
+# Calculate average price
+average_price = sales_data['Price'].mean()
+
+print("\nAverage price of products sold:")
+print(average_price)
